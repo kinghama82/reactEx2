@@ -58,6 +58,7 @@ const ExRateComponent = () => {
             }
         };
 
+        
         fetchExchangeRates();
     }, []);
 
@@ -100,19 +101,15 @@ const ExRateComponent = () => {
     `;
 
     return (
-        <div style={{ fontFamily: "Arial, sans-serif", padding: "20px" }}>
+        <div style={{ fontFamily: "Arial, sans-serif", padding: "10px" }}>
             <style>{keyframes}</style>
             <h1>오늘의 환율</h1>
             {currentRate ? (
                 <div style={isAnimating ? slideInStyle : slideOutStyle}>
-                    <p>
-                        {currentRate.cur_nm}({currencySymbols[currentRate.cur_unit]}) : {currentRate.kftc_deal_bas_r}
-                    </p>
+                    <p>{currentRate.cur_nm}({currencySymbols[currentRate.cur_unit]}) : {currentRate.kftc_deal_bas_r}</p>
                 </div>                     // 통화 이름(통화 기호) : 환율 값
-            ) : (
-                <p>No exchange rate data available.</p>  //데이터가 없을때 출력
-            )}
-        </div>
+                ) : (<p>No exchange rate data available.</p>)}           
+        </div>         //데이터가 없을 때 출력
     );
 };
 
