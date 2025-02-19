@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { getOne, putOne } from "../../api/productApi";
+import { deleteOne, getOne, putOne } from "../../api/productApi";
 import { API_SERVER_HOST } from "../../api/todoApi";
 import useCustomMove from "../../hooks/useCustomMove";
 import FetchingModal from "../common/FetchingModal";
@@ -41,8 +41,12 @@ const ModifyComponent = ({pno}) => {
         product.uploadFileNames = resultFileNames
         setProduct({...product})
     }
-    const handleClickDelete = (e) => {
-       
+    const handleClickDelete = () => {
+        setFetching(true)
+       deleteOne(pno).then(data => {
+              setFetching(false)
+              setResult(data.result)
+         })
 
 
     }
@@ -51,7 +55,7 @@ const ModifyComponent = ({pno}) => {
         const files = uploadRef.current.files
         const formData = new FormData()
 
-        for(let i = 0; i < files.lenght; i++){
+        for(let i = 0; i < files.length; i++){
             formData.append("files", files[i]);
         }
         formData.append("pname", product.pname)

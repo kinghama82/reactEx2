@@ -1,10 +1,13 @@
 import {Link} from "react-router-dom";
 import ExRateComponent from "../ExRateComponent"
+import {useSelector} from "react-redux";
 
 const BasicMenu = ()=>{
+    const loginState = useSelector(state=>state.loginSlice);
+    console.log("loginState......" + loginState)
     return(
         <nav id="navbar" className="flex bg-blue-700">
-
+            
             <div className="w-4/5 bg-gray-500">
                 <ul className="flex p-4 text-white font-bold">
                     <li className="pr-6 text-2xl">
@@ -12,13 +15,16 @@ const BasicMenu = ()=>{
                     </li>
                     <li className="pr-6 text-2xl">
                         <Link to={'/about'}>About</Link>
-                    </li>
+                    </li>{loginState.email ? 
+                    <>
                     <li className="pr-6 text-2xl">
                         <Link to={'/todo'}>Todo</Link>
                     </li>
+                    
                     <li className="pr-6 text-2xl">
                         <Link to={'/products'}>Products</Link>
                     </li>
+                    </> : <></>}
                 </ul>
             </div>
             <div className="flex justify-end bg-gray-500 h-full w-full">
@@ -26,9 +32,15 @@ const BasicMenu = ()=>{
             </div>
 
             <div className="w-1/5 flex justify-end bg-orange-300 p-4 font-medium">
+            {! loginState.email ?
                 <div className="text-white text-sm m-1 rounded">
-                    Login
+                    <Link to={'/member/login'}>Login</Link>
                 </div>
+                :
+                <div className="text-white text-sm m-1 rounded">
+                    <Link to={'/member/logout'}></Link>
+                </div>
+        }   
             </div>
         </nav>
     );
