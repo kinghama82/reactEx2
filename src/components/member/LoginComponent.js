@@ -37,8 +37,9 @@ const LoginComponent = () => {
                 if(data.error){
                     alert("이메일과 패스워드를 확인 후 다시 입력해주세요")
                 }else{
+                    //json으로 바꿔주는거
                     setCookie('member', JSON.stringify(data), 1)
-                    alert("로그인 성공")
+                    alert("로그인 성공")          
                     // navigate({pathname:`/`} , {replace:true}) //뒤로 가기 했을때 로그인 화면은 볼 수 없도록
                     moveToPath('/')
                 }

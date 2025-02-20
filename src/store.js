@@ -2,6 +2,7 @@ import {configureStore} from '@reduxjs/toolkit';
 import loginSlice from './slices/loginSlice';
 
 //스토어는 저장 공간(금고)  --> 리듀서가 금고안의 데이터를 넣다 뺏다 해주는 역할
+//리듀서는 안쪽에 state action 2개만 들어감
 //리듀서는 저장 공간에 저장된 데이터를 변경하는 함수
 //리듀서는 현재 스토어에 있는 애플리케이션의 상태를 가공, 변경하는 함수
 //리듀서는 순수 함수여야 한다. 순수함수는 외부의 상태를 변경하지 않고, 인자로 받은 값을 그대로 반환하는 함수

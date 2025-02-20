@@ -5,7 +5,7 @@ const cookies = new Cookies()
 export const setCookie = (name, value, days) => {
     
     const expires = new Date()
-
+    //utcdate는 날자 세팅
     expires.setUTCDate(expires.getUTCDate()+ days) //보관기간
     //쿠키는 이름과 값 그리고 경로 설정해줘야함  / 이후의 하위 경로에서 쿠키를 사용할 거임
     return cookies.set(name, value, {path:'/', expires:expires})
